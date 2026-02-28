@@ -1,1 +1,6 @@
 __pycache__/
+spark-events/*
+!spark-events/.gitkeep
+artifacts/*
+*SUCCESS*
+*.crc
