@@ -63,7 +63,8 @@ You can run the `jobs/sales_revenue.py` directly via spark-submit if spark is al
     ```
 5. Spark UI.
 
-    Navigate to http://localhost:4040 to view your current spark Job.
+    Navigate to http://localhost:4040 to view your current spark Job.<br>
+    Note the UI is available only till the spark application is running after which its shutdown.
 
 #### Setting up spark history server.
 
