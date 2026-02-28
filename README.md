@@ -61,6 +61,9 @@ You can run the `jobs/sales_revenue.py` directly via spark-submit if spark is al
     --conf spark.eventLog.dir=file:/opt/app/spark-events \
     jobs/sales_revenue.py
     ```
+5. Spark UI.
+
+    Navigate to http://localhost:4040 to view your current spark Job.
 
 #### Setting up spark history server.
 
