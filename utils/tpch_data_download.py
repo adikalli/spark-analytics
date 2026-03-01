@@ -22,10 +22,7 @@ def export_tpch_data(scale_factor: int = 1,output_dir: str = "data/raw/"):
     #     raise ValueError("Scale factor should be between 0.1 and 10000")
 
     output_dir = f"{output_dir}/tpch_sf{scale_factor}"
-    output_path = Path(output_dir)
-    output_path.mkdir(parents=True, exist_ok=True)
-
-    print(f"Exporting TPCH SF{scale_factor} data to: {output_path.resolve()}")
+    print(f"Exporting TPCH SF{scale_factor} data to: {output_dir}")
 
     # Connect to DuckDB (in-memory)
     con = duckdb.connect(database=":memory:")
@@ -48,7 +45,11 @@ def export_tpch_data(scale_factor: int = 1,output_dir: str = "data/raw/"):
     print("Exporting tables to Parquet...")
 
     for (table_name,) in tables:
-        parquet_file = output_path / f"{table_name}.parquet"
+        print(f"Exporting {table_name} to Parquet...")
+
+        output_path = Path(f"{output_dir}/{table_name}/")
+        output_path.mkdir(parents=True, exist_ok=True)
+        parquet_file = f"{output_path}/{table_name}.parquet"
 
         print(f"Writing {table_name} -> {parquet_file}")
 
