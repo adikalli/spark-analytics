@@ -64,4 +64,4 @@ def export_tpch_data(scale_factor: int = 1,output_dir: str = "data/raw/"):
 
 
 if __name__ == "__main__":
-    export_tpch_data(scale_factor=10,output_dir="data/raw/")
+    export_tpch_data(scale_factor=1,output_dir="data/raw/")
