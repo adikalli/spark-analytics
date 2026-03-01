@@ -1,6 +1,9 @@
 __pycache__/
+.DS_Store
 spark-events/*
 !spark-events/.gitkeep
 artifacts/*
 *SUCCESS*
 *.crc
+data/raw/tpch_sf1/*
+data/raw/tpch_sf10/*
