@@ -7,3 +7,9 @@ cd spark-cluster/
 docker compose up -d --build 
 docker exec -it spark-master bash
 ```
+
+Submit Job.<br>
+
+```bash
+ /opt/spark/bin/spark-submit jobs/tpch_revenue_by_region_year.py
+```
