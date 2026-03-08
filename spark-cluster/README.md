@@ -11,5 +11,16 @@ docker exec -it spark-master bash
 Submit Job.<br>
 
 ```bash
- /opt/spark/bin/spark-submit jobs/tpch_revenue_by_region_year.py
+/opt/spark/bin/spark-submit  \
+--master spark://spark-master:7077 \
+--executor-memory 512m \
+--total-executor-cores 2 \
+jobs/tpch_revenue_by_region_year.py
 ```
+
+Stop the cluster after use.
+
+```bash
+docker compose down 
+```
+
