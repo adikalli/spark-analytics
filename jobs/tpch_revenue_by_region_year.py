@@ -6,7 +6,6 @@ def main():
     spark = (
         SparkSession.builder
         .appName("TPCHRevenueByRegionYear")
-        .master("local[*]")
         .getOrCreate()
     )
 
