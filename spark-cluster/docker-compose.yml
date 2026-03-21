@@ -32,7 +32,7 @@ services:
       "
     environment:
       - SPARK_WORKER_MEMORY=512m
-      - SPARK_WORKER_CORES=1
+      - SPARK_WORKER_CORES=3
     ports:
       - "8081:8081"
     volumes:
@@ -52,7 +52,7 @@ services:
       "
     environment:
       - SPARK_WORKER_MEMORY=512m
-      - SPARK_WORKER_CORES=1
+      - SPARK_WORKER_CORES=3
     ports:
       - "8082:8081"
     volumes:
@@ -70,7 +70,7 @@ services:
       tail -f /dev/null
       "
     ports:
-      - "18080:18080"
+      - "18081:18080"
     volumes:
       - ../spark-events:/opt/app/spark-events
       - ../spark-conf/spark-defaults.conf:/opt/spark/conf/spark-defaults.conf

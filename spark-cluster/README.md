@@ -14,7 +14,7 @@ Submit Job.<br>
 /opt/spark/bin/spark-submit  \
 --master spark://spark-master:7077 \
 --executor-memory 512m \
---total-executor-cores 2 \
+--total-executor-cores 6 \
 jobs/tpch_revenue_by_region_year.py
 ```
 
