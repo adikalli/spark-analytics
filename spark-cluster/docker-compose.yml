@@ -74,3 +74,27 @@ services:
     volumes:
       - ../spark-events:/opt/app/spark-events
       - ../spark-conf/spark-defaults.conf:/opt/spark/conf/spark-defaults.conf
+    
+  jupyter:
+    image: spark:3.5.3
+    container_name: spark-jupyter
+    working_dir: /opt/app/
+    depends_on:
+      - spark-master
+    ports:
+      - "8889:8888"
+    environment:
+      - SPARK_MASTER=spark://spark-master:7077
+      - PYSPARK_PYTHON=python3
+      - PYSPARK_DRIVER_PYTHON=jupyter
+      - PYSPARK_DRIVER_PYTHON_OPTS=notebook
+    command: >
+      bash -c "
+      pip install --no-cache-dir jupyter &&
+      export PYTHONPATH=/opt/spark/python:$(ls /opt/spark/python/lib/py4j-*.zip) &&
+      jupyter notebook --ip=0.0.0.0 --port=8888 --allow-root --no-browser --NotebookApp.token=''
+      "
+    volumes:
+      - ..:/opt/app
+      - ../spark-conf/spark-defaults.conf:/opt/spark/conf/spark-defaults.conf
+    user: root

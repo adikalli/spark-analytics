@@ -7,3 +7,4 @@ artifacts/*
 *.crc
 data/raw/tpch_sf1/*
 data/raw/tpch_sf10/*
+notebooks/.ipynb_checkpoints
