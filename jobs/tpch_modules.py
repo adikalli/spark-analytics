@@ -1,5 +1,5 @@
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import col, year, sum as _sum
+from pyspark.sql.functions import lit,col, year, sum as _sum
 
 def read_tpch_tables(spark, base_path):
     return {
@@ -33,12 +33,19 @@ def aggregate_revenue(df):
     )
 
 def introduce_skew(df, region_name="ASIA", multiplier=3):
+    
     skew_df = df.filter(col("r_name") == region_name)
-    non_skew_df = df.filter(col("r_name") != region_name)
+    non_skew_df = df.filter(col("r_name") != region_name).limit(50)
+                    # .sample(withReplacement=False, fraction=0.01, seed=42)
+
+    # new region
+    new_region = non_skew_df.limit(5)\
+                .withColumn('r_name',lit('AUSTRALIA'))
 
     for _ in range(multiplier - 1):
         skew_df = skew_df.union(df.filter(col("r_name") == region_name))
 
+    skew_df = skew_df.union(new_region)
     return non_skew_df.union(skew_df)
 
 def tpch_runner(spark,data_path):
